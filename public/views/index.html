@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Omega Shelf</title>
+    <script src="/vendors/angular.min.js" charset="utf-8"></script>
+    <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
+    <script src="/scripts/shelfController.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+
+<body ng-app="myApp">
+    <div class="container" ng-controller="ShelfController as sc">
+        <h1>Omega Shelf</h1>
+        <div id="navBar">
+            <ng-view></ng-view>
+        </div>
+        <div id="shelf">
+
+        </div>
+    </div>
+</body>
+
+</html>
