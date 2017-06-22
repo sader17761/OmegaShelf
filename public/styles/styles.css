@@ -12,3 +12,11 @@ body, html{
   background-color: honeydew;
 
 }
+
+#shelf {
+  margin-top: 150px;
+}
+
+img {
+  height: 350px;
+}

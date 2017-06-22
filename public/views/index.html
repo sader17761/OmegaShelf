@@ -15,13 +15,14 @@
 </head>
 
 <body ng-app="myApp">
-    <div class="container" ng-controller="ShelfController as sc">
+    <div class="container" ng-controller="ShelfController as sc" ng-init="sc.displayItems()" >
         <h1>Omega Shelf</h1>
         <div id="navBar">
             <ng-view></ng-view>
         </div>
-        <div id="shelf">
-
+        <div id="shelf" ng-repeat="item in sc.shelfArray">
+          <h2>{{item.description}}</h2>
+          <img ng-src="{{item.imageUrl}}" alt="ya done fucked up"/>
         </div>
     </div>
 </body>

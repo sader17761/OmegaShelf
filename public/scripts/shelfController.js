@@ -17,6 +17,7 @@ app.controller('ShelfController', ShelfController);
 
 function ShelfController(ShelfService, $location) {
     var vm = this;
+    vm.shelfArray = [];
 
     console.log('NG is here');
 
@@ -53,6 +54,8 @@ function ShelfController(ShelfService, $location) {
             };
             ShelfService.postLogin( credentials ).then(function(response) {
               if (response.status == 200 ) {
+                vm.name = credentials.username;
+                console.log(vm.name, credentials.username);
                 vm.go('/loggedIn');
                 vm.inputed.username ='';
                 vm.inputed.password = '';
@@ -61,5 +64,26 @@ function ShelfController(ShelfService, $location) {
 
               }
             });
+    };
+    vm.logOut = function(){
+      vm.name = '';
+      vm.go('/');
+    };
+
+    vm.shelveItem = function() {
+      var itemToSend = {
+        description: vm.inputed.descIn,
+        placer: vm.name,
+        imageUrl: vm.inputed.imageURLin
+      };
+
+      ShelfService.postItem(itemToSend);
+    };
+
+    vm.displayItems = function() {
+      ShelfService.getItems().then(function(response){
+        console.log('response is: ', response);
+        vm.shelfArray = response.data;
+      });
     };
 }
