@@ -26,14 +26,40 @@ function ShelfController(ShelfService, $location) {
 
     vm.registerUser = function() {
       console.log('vm.registerUser clicked!');
-        if (vm.password !== vm.password2) {
+        if (vm.inputed.password !== vm.inputed.password2) {
             alert("passwords don't match!");
         } else {
             var credentials = {
-                username: vm.username,
-                password: vm.password
+                username: vm.inputed.username,
+                password: vm.inputed.password
             };
-            ShelfService.postRegister( credentials );
+            ShelfService.postRegister( credentials ).then(function(response) {
+              if (response.status == 201 ) {
+                vm.go('/');
+                vm.inputed.username ='';
+                vm.inputed.password = '';
+                vm.inputed.password2 = '';
+              } else {
+
+              }
+            });
         }
+    };
+    vm.loginUser = function() {
+      console.log('vm.registerUser clicked!');
+            var credentials = {
+                username: vm.inputed.username,
+                password: vm.inputed.password
+            };
+            ShelfService.postLogin( credentials ).then(function(response) {
+              if (response.status == 200 ) {
+                vm.go('/loggedIn');
+                vm.inputed.username ='';
+                vm.inputed.password = '';
+                // vm.inputed = '';
+              } else {
+
+              }
+            });
     };
 }

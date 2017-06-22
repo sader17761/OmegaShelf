@@ -1,8 +1,8 @@
 <div>
 <form name="loggedIn">
   <!-- <p>{{   }}</p> -->
-  <textarea placeholder="description" required><textarea>
-  <input type="text" placeholder="imageURL" ng-model="sc.imageURLin" required>
+  <textarea placeholder="description" required></textarea>
+  <input type="text" placeholder="imageURL" ng-model="sc.inputed.imageURLin" required>
   <button ng-disabled="loggedIn.$invalid">SHELVE IT</button>
   <button ng-click="sc.go('/')">LOG OUT</button>
 </form>
