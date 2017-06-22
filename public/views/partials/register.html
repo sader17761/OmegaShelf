@@ -3,6 +3,6 @@
   <input placeholder="username" ng-model="sc.username" required>
   <input type="password" placeholder="password" ng-model="sc.password" required>
   <input type="password" placeholder="password" ng-model="sc.password2" required>
-  <button ng-disabled="register.$invalid">SUBMIT</button>
+  <button ng-click="sc.registerUser()" ng-disabled="register.$invalid">SUBMIT</button>
 </form>
 </div>
