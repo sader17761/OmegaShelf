@@ -18,30 +18,30 @@ app.controller('ShelfController', ShelfController);
 function ShelfController(ShelfService, $location) {
     var vm = this;
     vm.shelfArray = [];
-var effect = document.createElement('audio');
-effect.autoplay = false;
+    var effect = document.createElement('audio');
+    effect.autoplay = false;
 
-function soundEffect(){
-  effect.play();
-}
+    function soundEffect( src ) {
+      effect.src = src;
+        effect.play();
+    }
     console.log('NG is here');
 
     vm.go = function(path) {
-      if(path == '/loggedIn'){
-      effect.src = '/media/loggedin.m4a';
-      soundEffect();
-        $location.path(path);
-      } else {
-        effect.src = '/media/click.m4a';
-        soundEffect();
-          $location.path(path);
-      }
+        if (path == '/loggedIn') {
+            soundEffect('/media/loggedin.m4a');
+            $location.path(path);
+        } else {
+            soundEffect('/media/click.m4a');
+            $location.path(path);
+        }
     };
 
     vm.registerUser = function() {
         console.log('vm.registerUser clicked!');
         if (vm.inputed.password !== vm.inputed.password2) {
-            alert("passwords don't match!");
+            swal("Whoops!", "passwords don't match!", "error");
+            soundEffect('/media/uhoh.m4a');
         } else {
             var credentials = {
                 username: vm.inputed.username,
@@ -54,7 +54,7 @@ function soundEffect(){
                     vm.inputed.password = '';
                     vm.inputed.password2 = '';
                 } else {
-
+                  soundEffect('/media/uhoh.m4a');
                 }
             });
         }
@@ -66,8 +66,8 @@ function soundEffect(){
             password: vm.inputed.password
         };
         ShelfService.postLogin(credentials).then(function(response) {
-            if (response.status == 200) {
-              vm.go('/loggedIn');
+            if (response.data == 'we got it') {
+                vm.go('/loggedIn');
                 vm.name = credentials.username;
                 console.log(vm.name, credentials.username);
 
@@ -75,7 +75,8 @@ function soundEffect(){
                 vm.inputed.password = '';
                 // vm.inputed = '';
             } else {
-
+              swal("Whoah there!", "Check yer info, friendo", "error");
+              soundEffect('/media/uhoh.m4a');
             }
         });
     };
@@ -92,12 +93,15 @@ function soundEffect(){
                 imageUrl: vm.inputed.imageURLin
             };
 
-            ShelfService.postItem(itemToSend);
-            vm.displayItems();
-        } else {
-          effect.src = '/media/uhoh.m4a';
-          soundEffect();
-          swal("LOG IN FOOL", "You need to be logged in to post", "error");
+            ShelfService.postItem(itemToSend).then(function(response){
+              vm.inputed.descIn = '';
+              vm.inputed.imageURLin = '';
+              vm.displayItems();
+              soundEffect('/media/click.m4a');
+            });        
+          } else {
+            soundEffect('/media/uhoh.m4a');
+            swal("LOG IN FOOL", "You need to be logged in to post", "error");
         }
     };
 
@@ -127,8 +131,7 @@ function soundEffect(){
                         vm.displayItems();
                     });
                     swal("Destroyed!", "Your shelf item has been deleted.", "success");
-                    effect.src= '/media/destroy.m4a';
-                    soundEffect();
+                    soundEffect('/media/destroy.m4a');
                 } else {
                     swal("Cancelled", "Your shelf is safe :)", "error");
                 }

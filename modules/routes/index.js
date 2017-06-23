@@ -19,22 +19,22 @@ router.post('/', function(req, res) {
         username: req.body.username
     }, function(err, user) {
         if (err) {
-            res.sendStatus(400);
+            res.send('we don\'t got it');
         } else {
             if (user != undefined) {
                 bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
                     if (err) {
-                        res.sendStatus(400);
+                        res.send('we don\'t got it');
                     } else {
                         if (isMatch) {
-                            res.sendStatus(200);
+                            res.send('we got it');
                         } else {
-                            res.sendStatus(418);
+                            res.send('we don\'t got it');
                         }
                     }
                 });
             } else {
-                res.sendStatus(400);
+                res.send('we don\'t got it');
             }
         }
     });
