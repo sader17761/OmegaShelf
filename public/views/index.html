@@ -8,9 +8,11 @@
     <title>Omega Shelf</title>
     <script src="/vendors/angular.min.js" charset="utf-8"></script>
     <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
+    <script src="/vendors/sweetalert.min.js" charset="utf-8"></script>
     <script src="/scripts/shelfController.js" charset="utf-8"></script>
     <script src="/scripts/services/shelf.service.js" charset="utf-8"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/vendors/sweetalert.css">
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
@@ -20,9 +22,12 @@
         <div id="navBar">
             <ng-view></ng-view>
         </div>
-        <div id="shelf" ng-repeat="item in sc.shelfArray">
-          <h2>{{item.description}}</h2>
-          <img ng-src="{{item.imageUrl}}" alt="ya done fucked up"/>
+        <div class="shelf" >
+          <div class="shelfItem" ng-repeat="item in sc.shelfArray">
+            <p class="placerText">Shelved By: {{item.placer}} <button ng-if="item.placer == sc.name" type="button" name="button" ng-click="sc.destroy(item._id)">Destroy</button></p>
+            <img ng-src="{{item.imageUrl}}" alt="ya done fucked up"/>
+            <h2>{{item.description}}</h2>
+          </div>
         </div>
     </div>
 </body>

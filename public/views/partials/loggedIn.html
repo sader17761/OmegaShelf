@@ -1,9 +1,11 @@
 <div>
     <form name="loggedIn">
-        <p>Logged in as: {{ sc.name }}</p>
-        <textarea ng-model="sc.inputed.descIn" placeholder="description" required></textarea>
+        <p class="loggedInText">Logged in as: {{ sc.name }}</p>
+        <input ng-model="sc.inputed.descIn" placeholder="description" required></input>
         <input type="text" placeholder="imageURL" ng-model="sc.inputed.imageURLin" required>
-        <button ng-click="sc.shelveItem()" ng-disabled="loggedIn.$invalid">SHELVE IT</button>
+        <div class="buttonContainer">
+          <button class="loggedInButton" ng-click="sc.shelveItem()" ng-disabled="loggedIn.$invalid">SHELVE IT</button>
+          <button class="loggedInButton" id="logout" ng-click="sc.logOut()">LOG OUT</button>
+        </div>
     </form>
-    <button id="logout" ng-click="sc.logOut()">LOG OUT</button>
 </div>

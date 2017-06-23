@@ -2,7 +2,9 @@
     <form name="login">
         <input placeholder="username" ng-model="sc.inputed.username" required>
         <input type="password" placeholder="password" ng-model="sc.inputed.password" required>
-        <button ng-click="sc.loginUser()" ng-disabled="login.$invalid">LOG IN</button>
-        <button ng-click="sc.go('/register')">REGISTER</button>
+        <div class="buttonContainer">
+          <button class="loginButtons" ng-click="sc.loginUser()" ng-disabled="login.$invalid">LOG IN</button>
+          <button class="loginButtons" ng-click="sc.go('/register')">REGISTER</button>
+        </div>
     </form>
 </div>

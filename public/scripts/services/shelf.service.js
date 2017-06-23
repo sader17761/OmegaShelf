@@ -28,5 +28,11 @@ app.service( 'ShelfService', function( $http) {
       return response;
     });
   };
+  sv.deleteItem = function(id) {
+    return $http.delete('/items/'+ id).then(function(response){
+      console.log('deleted', response);
+      return response;
+    });
+  };
 
 });

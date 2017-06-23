@@ -1,22 +1,109 @@
 h1 {
   text-align: center;
 }
+
+.loggedInText {
+  color: #708D81;
+  margin-top: 0px;
+}
+
 body, html{
   margin: 0px;
+  background-color: #FBEFD5;
+  font-family: 'Quicksand', sans-serif;
 }
+
 #navBar{
   position: fixed;
   top: 0;
   width: 100%;
-  height: 100px;
-  background-color: honeydew;
-
+  height: 150px;
+  background-color: #001427;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#shelf {
+.shelf {
   margin-top: 150px;
+  width: 100vw
+}
+
+.shelfItem {
+  width: 400px;
+  margin: auto;
+  margin-top: 15px;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #CBD5D1;
+}
+
+.placerText {
+  text-align: left;
+  margin-left: 15px;
 }
 
 img {
-  height: 350px;
+  max-height: 350px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.container {
+  display: inline-block;
+}
+
+.registerButton {
+  display: block;
+  margin: auto;
+}
+
+button {
+  background-color: #8D0801;
+  border-radius: 5px;
+  border: none;
+  color: #FBEFD5;
+  font-size: 16px;
+  padding: 8px 16px;
+  margin-top: 10px;
+  transition-duration: 300ms;
+  display: block;
+}
+
+button:hover {
+  background-color: #BF0603
+}
+
+button:focus {
+  outline: none;
+}
+
+input {
+  font-size: 14pt;
+  margin-bottom: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s
+}
+
+input:focus {
+  border: solid 1px #bebebe;
+  box-shadow: 0px 0px 5px 1px #d9d9d9;
+  outline: none;
+}
+
+.buttonContainer {
+  display: block;
+  text-align: center;
+  align-items: center;
+}
+
+.loggedInButton {
+  margin: auto;
+  display: inline;
+}
+
+.loginButtons {
+  display: inline;
+  margin: auto;
 }
