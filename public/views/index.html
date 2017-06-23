@@ -11,13 +11,15 @@
     <script src="/vendors/sweetalert.min.js" charset="utf-8"></script>
     <script src="/scripts/shelfController.js" charset="utf-8"></script>
     <script src="/scripts/services/shelf.service.js" charset="utf-8"></script>
+    <script src="/vendors/jquery.min.js" charset="utf-8"></script>
+    <script src="/scripts/sideBar.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
     <link rel="stylesheet" href="/vendors/sweetalert.css">
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
 <body ng-app="myApp">
-    <div class="container" ng-controller="ShelfController as sc" ng-init="sc.displayItems()" >
+    <div class="controller" ng-controller="ShelfController as sc" ng-init="sc.displayItems()" >
         <h1>Omega Shelf</h1>
         <div id="navBar">
             <ng-view></ng-view>
@@ -28,6 +30,10 @@
             <img ng-src="{{item.imageUrl}}" alt="ya done fucked up"/>
             <h2>{{item.description}}</h2>
           </div>
+        </div>
+        <div class="sideBar">
+          <h1>Logged in users</h1>
+          <p ng-repeat="user in sc.users track by $index">{{user.placer}}</p>
         </div>
     </div>
 </body>

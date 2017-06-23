@@ -35,4 +35,10 @@ app.service( 'ShelfService', function( $http) {
     });
   };
 
+  sv.getUsernames = function() {
+    return $http.get('/').then(function(response) {
+      return response;
+    });
+  };
+
 });

@@ -18,8 +18,21 @@ app.controller('ShelfController', ShelfController);
 function ShelfController(ShelfService, $location) {
     var vm = this;
     vm.shelfArray = [];
+    vm.users = [];
     var effect = document.createElement('audio');
     effect.autoplay = false;
+
+    vm.getUsernames = function() {
+      ShelfService.getUsernames().then(function(response) {
+        if (vm.name) {
+          vm.users = [];
+          console.log('response.data is:', response);
+          for (var i = 0; i < response.data.length; i++) {
+            vm.users.push(response.data[i]);
+          }
+        }
+      });
+    };
 
     function soundEffect( src ) {
       effect.src = src;
@@ -74,6 +87,7 @@ function ShelfController(ShelfService, $location) {
                 vm.inputed.username = '';
                 vm.inputed.password = '';
                 // vm.inputed = '';
+                vm.displayItems();
             } else {
               swal("Whoah there!", "Check yer info, friendo", "error");
               soundEffect('/media/uhoh.m4a');
@@ -98,7 +112,7 @@ function ShelfController(ShelfService, $location) {
               vm.inputed.imageURLin = '';
               vm.displayItems();
               soundEffect('/media/click.m4a');
-            });        
+            });
           } else {
             soundEffect('/media/uhoh.m4a');
             swal("LOG IN FOOL", "You need to be logged in to post", "error");
@@ -109,6 +123,7 @@ function ShelfController(ShelfService, $location) {
         ShelfService.getItems().then(function(response) {
             console.log('response is: ', response);
             vm.shelfArray = response.data;
+            vm.getUsernames();
         });
     };
     vm.destroy = function(id) {

@@ -25,8 +25,11 @@ body, html{
 }
 
 .shelf {
+  margin: auto;
   margin-top: 150px;
-  width: 100vw
+  width: 70%;
+  /*background-color: rgb(172, 172, 172);*/
+  float: left;
 }
 
 .shelfItem {
@@ -92,6 +95,10 @@ input:focus {
   outline: none;
 }
 
+.controller {
+  width: 100%;
+}
+
 .buttonContainer {
   display: block;
   text-align: center;
@@ -106,4 +113,12 @@ input:focus {
 .loginButtons {
   display: inline;
   margin: auto;
+}
+
+.sideBar {
+  float: right;
+  width: 30%;
+  height: 600px;
+  /*background-color: honeydew;*/
+  margin-top: 150px;
 }

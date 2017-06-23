@@ -14,6 +14,13 @@ router.get('/', function(req, res) {
     console.log('base url hit');
     res.sendFile(path.resolve('public/views/index.html'));
 });
+
+router.get('/', function(req, res) {
+  user.find().then(function(response) {
+    res.send(response);
+  });
+});
+
 router.post('/', function(req, res) {
     user.findOne({
         username: req.body.username
