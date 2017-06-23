@@ -27,9 +27,15 @@ function soundEffect(){
     console.log('NG is here');
 
     vm.go = function(path) {
-      effect.src = '/media/click.m4a';
+      if(path == '/loggedIn'){
+      effect.src = '/media/loggedin.m4a';
       soundEffect();
         $location.path(path);
+      } else {
+        effect.src = '/media/click.m4a';
+        soundEffect();
+          $location.path(path);
+      }
     };
 
     vm.registerUser = function() {
@@ -61,11 +67,10 @@ function soundEffect(){
         };
         ShelfService.postLogin(credentials).then(function(response) {
             if (response.status == 200) {
-              effect.src= '/media/loggedin.m4a';
-              soundEffect();
+              vm.go('/loggedIn');
                 vm.name = credentials.username;
                 console.log(vm.name, credentials.username);
-                vm.go('/loggedIn');
+
                 vm.inputed.username = '';
                 vm.inputed.password = '';
                 // vm.inputed = '';
