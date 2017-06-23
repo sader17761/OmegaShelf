@@ -18,10 +18,17 @@ app.controller('ShelfController', ShelfController);
 function ShelfController(ShelfService, $location) {
     var vm = this;
     vm.shelfArray = [];
+var effect = document.createElement('audio');
+effect.autoplay = false;
 
+function soundEffect(){
+  effect.play();
+}
     console.log('NG is here');
 
     vm.go = function(path) {
+      effect.src = '/media/click.m4a';
+      soundEffect();
         $location.path(path);
     };
 
@@ -54,6 +61,8 @@ function ShelfController(ShelfService, $location) {
         };
         ShelfService.postLogin(credentials).then(function(response) {
             if (response.status == 200) {
+              effect.src= '/media/loggedin.m4a';
+              soundEffect();
                 vm.name = credentials.username;
                 console.log(vm.name, credentials.username);
                 vm.go('/loggedIn');
@@ -81,6 +90,8 @@ function ShelfController(ShelfService, $location) {
             ShelfService.postItem(itemToSend);
             vm.displayItems();
         } else {
+          effect.src = '/media/uhoh.m4a';
+          soundEffect();
           swal("LOG IN FOOL", "You need to be logged in to post", "error");
         }
     };
@@ -111,6 +122,8 @@ function ShelfController(ShelfService, $location) {
                         vm.displayItems();
                     });
                     swal("Destroyed!", "Your shelf item has been deleted.", "success");
+                    effect.src= '/media/destroy.m4a';
+                    soundEffect();
                 } else {
                     swal("Cancelled", "Your shelf is safe :)", "error");
                 }
